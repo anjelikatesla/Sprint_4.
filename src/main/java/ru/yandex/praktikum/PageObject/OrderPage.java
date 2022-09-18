@@ -12,51 +12,51 @@ import java.util.List;
 public class OrderPage {
     private WebDriver driver;
 
+    // Кнопка "Посмотреть статус"
+    private By statusButton = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM'][text()='Посмотреть статус']");
 
-    // поле для ввода имени
+    // Поле для ввода имени
     private By firstNameInput = By.cssSelector("input[placeholder=\"* Имя\"]");
 
-    // поле для ввода фамилии
+    // Поле для ввода фамилии
     private By lastNameInput = By.cssSelector("input[placeholder=\"* Фамилия\"]");
 
-    // поле для ввода адреса
+    // Поле для ввода адреса
     private By adressInput = By.cssSelector("input[placeholder=\"* Адрес: куда привезти заказ\"]");
 
-    // станция метро по поиску
+    // Станция метро по поиску
     private By metroStantionValue = By.className("select-search__value");
 
-    // поле для ввода станции метро
+    // Поле для ввода станции метро
     private By metroStantionInput = By.className("select-search__input");
 
-    //выбор станции метро
+    // Выбор станции метро
     private By metroStantionSelect = By.className("select-search__select");
 
 
-    // поле для ввода телефона
+    // Поле для ввода телефона
     private By phoneNumberInput = By.cssSelector("input[placeholder=\"* Телефон: на него позвонит курьер\"]");
 
     // Кнопка "Далее"
     private By furtherButton = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM'][text()='Далее']");
 
-
-    // поле "Когда привезти самокат"
+    // Поле "Когда привезти самокат"
     private By dateOrderInput = By.cssSelector("input[placeholder=\"* Когда привезти самокат\"]");
 
-    // поле "Скрок аренды"
+    // Поле "Скрок аренды"
     private By rentalPeriodBlock = By.className("Dropdown-placeholder");
 
-    //Выпадаюсщий список срока аренды
+    // Выпадаюсщий список срока аренды
     private By rentalPeriodOption = By.cssSelector(".Dropdown-menu .Dropdown-option");
-
 
 
     // Блок "Цвет самоката"
     private By colorScooterLabel = By.cssSelector("label.Checkbox_Label__3wxSf");
 
-    // поле "Комментарий бдля курьера"
+    // Поле "Комментарий бдля курьера"
     private By commentForDelivery = By.cssSelector("input[placeholder=\"Комментарий для курьера\"]");
 
-    //Кнопка "Заказать"
+    // Кнопка "Заказать"
     private By orderButton = By.xpath("//button[@class='Button_Button__ra12g Button_Middle__1CSJM'][text()='Заказать']");
 
 
@@ -147,5 +147,9 @@ public class OrderPage {
 
     public WebElement getOrderSuccessBlock() {
         return driver.findElement(successOrderStatus);
+    }
+
+    public void statusButtonClick() {
+        driver.findElement(statusButton).click();
     }
 }
