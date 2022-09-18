@@ -1,6 +1,7 @@
 package ru.yandex.praktikum.PageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -14,13 +15,16 @@ public class MainPage {
         this.driver = driver;
     }
 
-    // заголовок "Вопросы о важном"
+    // Лого "Яндекс самокат"
+    private By logoScooter = By.className("Header_LogoScooter__3lsAR");
+
+    // Заголовок "Вопросы о важном"
     private By faqTitle = By.className("Home_SubHeader__zwi_E");
 
-    //Блок Аккардеон
+    // Блок Аккардеон
     private By faqAccordion = By.className("accordion");
 
-    //Кнопка в Аккардеоне
+    // Кнопка в Аккардеоне
     private By faqAccordionButton = By.className("accordion__button");
 
     // Контейнер ответа по вопросу.
@@ -30,10 +34,10 @@ public class MainPage {
     private By cookieButton = By.id("rcc-confirm-button");
 
     // Кнопка "Заказать" в шапке сайта
-    private By orderButton = By.className("Button_Button__ra12g");
+    private By orderButtonInHead = By.className("Button_Button__ra12g");
 
     // Кнопка "Заказать" в разделе "Как это работает"
-    private By orderButtonTwo = By.className("Button_Button__ra12g.Button_Middle__1CSJM");
+    private By orderButtonInBody = By.cssSelector(".Home_FinishButton__1_cWm .Button_Button__ra12g.Button_Middle__1CSJM");
 
     public WebElement getElementAccordion(String title) {
         List<WebElement> elements = driver.findElements(faqAccordionButton);
@@ -43,6 +47,10 @@ public class MainPage {
             }
         }
         return null;
+    }
+
+    public void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public WebElement getAnswerByTitle(WebElement element) {
@@ -57,7 +65,7 @@ public class MainPage {
      * Выполнить клик по кнопке 'Заказать' в хэдере страницы
      */
     public OrderPage orderButtonClick() {
-        driver.findElement(orderButton).click();
+        driver.findElement(orderButtonInHead).click();
         return new OrderPage(driver);
     }
 
@@ -65,7 +73,11 @@ public class MainPage {
      * Выполнить клик по кнопке 'Заказать' в теле страницы
      */
     public OrderPage orderButtonInBodyClick() {
-        driver.findElement(orderButton).click();
+        driver.findElement(orderButtonInBody).click();
         return new OrderPage(driver);
+    }
+
+    public void clickLogoScooter() {
+        driver.findElement(logoScooter).click();
     }
 }
